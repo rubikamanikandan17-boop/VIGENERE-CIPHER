@@ -30,7 +30,48 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
 ## PROGRAM
+```
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main()
+{
+    char text[] = "RUBIKAMANIKANDAN";
+    char key[] = "LEMON";
+    char cipher[100], decrypt[100];
+    int i, len, keylen;
+
+    len = strlen(text);
+    keylen = strlen(key);
+
+    printf("Simulating Vigenere Cipher\n");
+    printf("Plain text : %s\n", text);
+    printf("Key text : %s\n", key);
+
+    for (i = 0; i < len; i++)
+    {
+        cipher[i] = ((text[i] - 'A' + key[i % keylen] - 'A') % 26) + 'A';
+    }
+    cipher[len] = '\0';
+
+    printf("Cipher text : %s\n", cipher);
+
+    for (i = 0; i < len; i++)
+    {
+        decrypt[i] = ((cipher[i] - 'A' - (key[i % keylen] - 'A') + 26) % 26) + 'A';
+    }
+    decrypt[len] = '\0';
+
+    printf("Decrypted text : %s\n", decrypt);
+
+    return 0;
+}
+```
 
 ## OUTPUT
+<img width="1563" height="1012" alt="image" src="https://github.com/user-attachments/assets/e8b21b03-6585-4274-a976-d39dcb605cea" />
+
 
 ## RESULT
+Thus, the Vigenère cipher was implemented successfully.
